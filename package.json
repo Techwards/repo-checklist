@@ -12,6 +12,7 @@
   },
   "files": [
     "index.js",
+    "template-*",
     "dist"
   ],
   "main": "index.js",
@@ -25,6 +26,10 @@
   },
   "homepage": "https://github.com/RepoHealth/repo-checklist#readme",
   "devDependencies": {
+    "@types/node": "^18.11.19",
+    "@types/prompts": "^2.4.2",
+    "kolorist": "^1.6.0",
+    "prompts": "^2.4.2",
     "unbuild": "^1.0.2"
   }
 }
