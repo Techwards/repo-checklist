@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import prompts from 'prompts';
-import { red, reset } from 'kolorist';
+import { red, blue, reset, magenta } from 'kolorist';
 import { getTemplateDirPath, copy, mkDir } from './util';
 
 const cwd = process.cwd();
@@ -19,17 +19,17 @@ async function init() {
         {
           type: 'confirm',
           name: 'prTemplate',
-          message: reset('Do you want Pr Template:'),
+          message: reset('Do you want PR Template:'),
         },
         {
           type: 'confirm',
           name: 'contribTemplate',
-          message: reset('Do you want Contrib Template:'),
+          message: reset('Do you want to add project Contribution Guidelines:'),
         },
         {
           type: 'confirm',
           name: 'issueTemplate',
-          message: reset('Do you want issue Template:'),
+          message: reset('Do you want to add Issue Template:'),
         },
       ],
       {
@@ -46,12 +46,30 @@ async function init() {
   // user choice associated with prompts
   const { prTemplate, contribTemplate, issueTemplate } = result;
   if (!prTemplate && !contribTemplate && !issueTemplate) {
-    console.log(`\nExiting...`);
+    console.log(blue(`\nExiting...`));
     return;
   }
 
   const root = path.join(cwd);
-  console.log(`\nScaffolding templates in ${root}...`);
+  console.log(blue(`\nScaffolding templates in ${root}...`));
+
+  if (prTemplate || issueTemplate) {
+    if (!fs.existsSync(dotGithubDir)) {
+      console.log(magenta('.github dir does not exist, making .github dir'));
+      mkDir(dotGithubDir);
+      console.log(magenta('.github dir created'));
+    }
+  }
+
+  if (prTemplate) {
+    const sourcePRTemplateDir = getTemplateDirPath('pr');
+    const files = fs.readdirSync(sourcePRTemplateDir);
+    for (const file of files) {
+      const sourceFilePath = path.join(sourcePRTemplateDir, file);
+      const destFilePath = path.join(dotGithubDir, file);
+      copy(sourceFilePath, destFilePath);
+    }
+  }
 
   if (contribTemplate) {
     const templateDir = getTemplateDirPath('contrib');
@@ -63,42 +81,13 @@ async function init() {
     }
   }
 
-  if (prTemplate) {
-    if (!fs.existsSync(dotGithubDir)) {
-      console.log('.github dir does not exist, making .github dir');
-      mkDir(dotGithubDir);
-      console.log('.github dir created');
-    }
-    const sourcePRTemplateDir = getTemplateDirPath('pr');
-    const files = fs.readdirSync(sourcePRTemplateDir);
-    for (const file of files) {
-      const sourceFilePath = path.join(sourcePRTemplateDir, file);
-      const destFilePath = path.join(dotGithubDir, file);
-      copy(sourceFilePath, destFilePath);
-    }
-  }
-
   if (issueTemplate) {
-    if (!fs.existsSync(dotGithubDir)) {
-      console.log('.github dir does not exist, making .github dir');
-      mkDir(dotGithubDir);
-      console.log('.github dir created');
-
-      if (!fs.existsSync(issueTemplateDir)) {
-        console.log(
-          'issueTemplate dir does not exist, making issueTemplate dir',
-        );
-        mkDir(issueTemplateDir);
-        console.log('issueTemplate dir created');
-      }
-    } else {
-      if (!fs.existsSync(issueTemplateDir)) {
-        console.log(
-          'issueTemplate dir does not exist, making issueTemplate dir',
-        );
-        mkDir(issueTemplateDir);
-        console.log('issueTemplate dir created');
-      }
+    if (!fs.existsSync(issueTemplateDir)) {
+      console.log(
+        magenta('issueTemplate dir does not exist, making issueTemplate dir'),
+      );
+      mkDir(issueTemplateDir);
+      console.log(magenta('issueTemplate dir created'));
     }
 
     const sourceIssueTemplateDir = getTemplateDirPath('issue');
@@ -110,9 +99,9 @@ async function init() {
     }
   }
 
-  console.log();
+  console.log(blue(`\nSuccessfully created the templates. Exiting...`));
 }
 
 init().catch((e) => {
-  console.error(e);
+  console.error(red(`Couldn't Start the Process. Error Occured: ${e}`));
 });
