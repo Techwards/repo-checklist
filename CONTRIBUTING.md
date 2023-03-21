@@ -28,14 +28,14 @@ Please ensure your commit adheres to the [Conventional Commits Specification](ht
 Please ensure your PR adheres to the following guidelines:
 
 - One item per Pull Request
-- For feature, follow this branch naming convention `feature-ISSUE_NUMBER-short-description-of-feature`
-  - For example: `feature-1-contributor-guide-for-project`
-- For bug and other update, follow `fix-ISSUE_NUMBER-short-description-of-fix`
+- For feature, follow this branch naming convention `feature/ISSUE-ISSUE_NUMBER-short-description-of-feature`
+  - For example: `feature/ISSUE-ISSUE_NUMBER-contributor-guide-for-project`
+- For bug and other update, follow `fix/ISSUE-ISSUE_NUMBER-short-description-of-fix`
 - PR title should follow the convention `Feature | ISSUE_NUMBER | Short Description Of Feature`
   - For example: `Feature | Issue #2 | Contributor Guide For Project`
-- For bugs and fixes, replace feature with `Fix` remaining will be the same
+- For bugs and other fixes, replace feature with any of these values `FIX, CI, DOCS, PERF, TEST, STYLE`
 - Keep PR descriptions short and simple
-- Link your PR with Github issue by using words `Closes #ISSUE_NUMBER` or `Fixes #ISSUE_NUMBER`, refer to this [doc](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
+- Link your PR with Github issue by using words `closes #ISSUE_NUMBER` or `fixes #ISSUE_NUMBER`, refer to this [doc](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
 - Make an individual pull request for each issue
 - Check your spelling and grammar
 
