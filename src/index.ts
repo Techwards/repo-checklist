@@ -51,43 +51,41 @@ async function init() {
   }
 
   const root = path.join(cwd);
-  console.log(blue(`\nScaffolding templates in ${root}...`));
+  console.log(blue(`\nScaffolding templates in ${root}...\n`));
 
   if (prTemplate || issueTemplate) {
     if (!fs.existsSync(dotGithubDir)) {
-      console.log(magenta('.github dir does not exist, making .github dir'));
       mkDir(dotGithubDir);
-      console.log(magenta('.github dir created'));
+      console.log(magenta('✔ Created .github directory'));
     }
   }
-
+  let prTemplatePath;
   if (prTemplate) {
     const sourcePRTemplateDir = getTemplateDirPath('pr');
     const files = fs.readdirSync(sourcePRTemplateDir);
     for (const file of files) {
       const sourceFilePath = path.join(sourcePRTemplateDir, file);
       const destFilePath = path.join(dotGithubDir, file);
+      prTemplatePath = destFilePath;
       copy(sourceFilePath, destFilePath);
     }
   }
-
+  let contribTemplatePath;
   if (contribTemplate) {
     const templateDir = getTemplateDirPath('contrib');
     const files = fs.readdirSync(templateDir);
     for (const file of files) {
       const sourceFilePath = path.join(templateDir, file);
       const targetFilePath = path.join(cwd, file);
+      contribTemplatePath = targetFilePath;
       copy(sourceFilePath, targetFilePath);
     }
   }
 
   if (issueTemplate) {
     if (!fs.existsSync(issueTemplateDir)) {
-      console.log(
-        magenta('issueTemplate dir does not exist, making issueTemplate dir'),
-      );
       mkDir(issueTemplateDir);
-      console.log(magenta('issueTemplate dir created'));
+      console.log(magenta('✔ Created ISSUE_TEMPLATE directory'));
     }
 
     const sourceIssueTemplateDir = getTemplateDirPath('issue');
@@ -99,7 +97,17 @@ async function init() {
     }
   }
 
-  console.log(blue(`\nSuccessfully created the templates. Exiting...`));
+  let closingMessage = `\nSuccessfully created the templates on the following paths.\n`;
+
+  const prTemplateMessage = `✔ Created Pr Template at ${prTemplatePath}\n`;
+  const contribTemplateMessage = `✔ Created Contribution Template at ${contribTemplatePath}\n`;
+  const issueTemplateMessage = `✔ Created Issue Template at ${issueTemplateDir}\n`;
+
+  closingMessage += prTemplate ? prTemplateMessage : '';
+  closingMessage += contribTemplate ? contribTemplateMessage : '';
+  closingMessage += issueTemplate ? issueTemplateMessage : '';
+
+  console.log(blue(closingMessage));
 }
 
 init().catch((e) => {
