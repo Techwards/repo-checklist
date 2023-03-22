@@ -2,21 +2,16 @@
 <!-- <p align="center">
   <img src="" alt="Repo Checklist" width="500" />
 </p> -->
-
-<h1 align="center">Repo Checklist</h1>
+ <a href="https://www.npmjs.com/package/repo-checklist">
+  <h1 align="center">Repo Checklist</h1>
+</a>
 
 <!-- PROJECT SHIELDS -->
 <p align="center">
-  <a href="package_link_here">
-    <img src="https://img.shields.io/badge/node-18.x.x-brightgreen.svg" alt="version" />
-  </a>
+  <img src="https://img.shields.io/badge/node-18.x.x-brightgreen.svg" alt="version" />
   &nbsp;
-  <a href="package_link_here">
-    <img src="https://github.com/Techwards/tw-website/actions/workflows/frontend.yml/badge.svg" alt="build" />
-  </a>
-  &nbsp;
-  <a href="package_link_here">
-    <img src="https://img.shields.io/npm/dm/prompts.svg" alt="downloads" />
+  <a href="https://www.npmjs.com/package/repo-checklist">
+    <img src="https://img.shields.io/npm/dm/repo-checklist" alt="downloads" />
   </a>
 </p>
 
@@ -47,6 +42,17 @@ Generated files on the following paths
 - Issue Template
   - Feature: `<your_project_roor>/.github/ISSUE_TEMPLATE/FEATURE.yml`
   - Fix: `<your_project_roor>/.github/ISSUE_TEMPLATE/FIX.yml`
+
+![split](https://github.com/terkelg/prompts/raw/master/media/split.png)
+
+## Future Roadmap
+
+Following are the future items that we will add
+
+- Issue Template Webform Support
+- Code Owners Support
+
+Any contributions are welcome!
 
 ![split](https://github.com/terkelg/prompts/raw/master/media/split.png)
 
