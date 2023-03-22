@@ -3,7 +3,6 @@ name: Fix
 about: File a fix or bug to help us improve
 title: '[Fix]: '
 labels: bug
-assignees: nabeel-shakeel
 ---
 
 Thanks for taking the time to fill out this fix report! To address this fix as fast as possible, we need some information
