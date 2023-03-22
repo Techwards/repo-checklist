@@ -35,6 +35,8 @@ Run the command in the root directory of the project
 
 It will launch a interactive UI that guides you through adding Repo Community Standard by simply typing `yes` to add in your project and `no` to skip it.
 
+![Repo Checklist Demo](./assets/repo-checklist-demo.gif)
+
 Generated files on the following paths
 
 - Pull Request Template: `<your_project_roor>/.github/PULL_REQUEST_TEMPLATE.md`
