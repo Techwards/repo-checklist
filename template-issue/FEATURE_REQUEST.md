@@ -3,7 +3,6 @@ name: Feature
 about: Open a request for new feature or enhancements
 title: '[Feature]: '
 labels: feature
-assignees: nabeel-shakeel
 ---
 
 Thanks for taking the time to fill out this feature request! To address this request as fast as possible, we need some information.

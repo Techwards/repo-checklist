@@ -1,6 +1,6 @@
 {
   "name": "repo-checklist",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "description": "A utility helps to setup up repo community standards",
   "repository": "git@github.com:RepoHealth/repo-checklist.git",
@@ -22,7 +22,7 @@
     "prepublishOnly": "yarn build"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=14.x.x"
   },
   "homepage": "https://github.com/RepoHealth/repo-checklist#readme",
   "devDependencies": {
