@@ -1,6 +1,6 @@
 {
   "name": "repo-checklist",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "A utility helps to setup up repo community standards",
   "repository": "git@github.com:RepoHealth/repo-checklist.git",
